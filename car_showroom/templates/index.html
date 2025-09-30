@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <title>موسوعة السيارات</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{{ 'dark' if mode == 'dark' else '' }}">
+
+  <header class="site-header">
+    <!-- زر الوضع الليلي / العادي -->
+    <div class="left">
+      {% if mode == 'dark' %}
+        <a class="mode-link" href="{{ url_for('index', q=q) }}">☀️ الوضع العادي</a>
+      {% else %}
+        <a class="mode-link" href="{{ url_for('index_dark', q=q) }}">🌙 الوضع الليلي</a>
+      {% endif %}
+    </div>
+
+    <!-- عنوان (مركزي) -->
+    <div class="center">
+      <h1>موسوعة السيارات</h1>
+    </div>
+
+    <!-- شريط البحث (على اليمين) -->
+    <div class="right">
+      {% if mode == 'dark' %}
+        <form action="{{ url_for('index_dark') }}" method="get" class="search-form">
+          <input name="q" value="{{ q }}" type="text" placeholder="ابحث عن سيارة..." class="search-input">
+          <!-- نحتفظ بقيمة البحث فقط؛ الوضع الليلي route هو /dark -->
+        </form>
+      {% else %}
+        <form action="{{ url_for('index') }}" method="get" class="search-form">
+          <input name="q" value="{{ q }}" type="text" placeholder="ابحث عن سيارة..." class="search-input">
+        </form>
+      {% endif %}
+    </div>
+  </header>
+
+  <main>
+    {% if cars %}
+    <div class="cars-grid">
+      {% for car in cars %}
+      {# الرابط يمرر 'mode=dark' لو كنا في الوضع الليلي عشان صفحة التفاصيل تبقى ليلية أيضاً #}
+      {% if mode == 'dark' %}
+        <a href="{{ url_for('car_page', car_id=car.id, mode='dark') }}" class="car-card" style="animation-delay: {{ (loop.index0 * 0.08)|round(2) }}s;">
+      {% else %}
+        <a href="{{ url_for('car_page', car_id=car.id) }}" class="car-card" style="animation-delay: {{ (loop.index0 * 0.08)|round(2) }}s;">
+      {% endif %}
+          <img src="{{ url_for('static', filename='images/' + car.images[0]) }}" alt="{{ car.name }}">
+          <div class="car-info">
+            <span class="car-name">{{ car.name }}</span>
+            <span class="car-rating">
+              {% for i in range(car.rating) %}⭐{% endfor %}
+            </span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    {% else %}
+      <p class="no-results">لا توجد نتائج مطابقة للبحث.</p>
+    {% endif %}
+  </main>
+
+</body>
+</html>

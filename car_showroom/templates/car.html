@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <title>{{ car.name }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{{ 'dark' if mode == 'dark' else '' }}">
+
+  <header class="site-header">
+    <div class="left">
+      {% if mode == 'dark' %}
+        <a class="mode-link" href="{{ url_for('index_dark') }}">☀️ الوضع العادي</a>
+      {% else %}
+        <a class="mode-link" href="{{ url_for('index') }}">🌙 الوضع الليلي</a>
+      {% endif %}
+    </div>
+
+    <div class="center">
+      <h1>{{ car.name }}</h1>
+    </div>
+
+    <div class="right">
+      {% if mode == 'dark' %}
+        <a class="back-link" href="{{ url_for('index_dark') }}">⬅️ رجوع</a>
+      {% else %}
+        <a class="back-link" href="{{ url_for('index') }}">⬅️ رجوع</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <main class="detail-main">
+    <section class="detail-images">
+      {% for img in car.images %}
+        <img src="{{ url_for('static', filename='images/' + img) }}" alt="{{ car.name }}">
+      {% endfor %}
+    </section>
+
+    <section class="detail-info">
+      <h2>{{ car.name }}</h2>
+      <p><strong>التقييم العالمي:</strong>
+        {% for i in range(car.rating) %}⭐{% endfor %}
+      </p>
+
+      {% for key, val in car.details.items() %}
+        <p><strong>{{ key }}:</strong> {{ val }}</p>
+      {% endfor %}
+    </section>
+  </main>
+
+</body>
+</html>

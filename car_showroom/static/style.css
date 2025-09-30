@@ -1,0 +1,206 @@
+/* عام */
+:root{
+  --accent: #007bff;
+  --bg: #ffffff;
+  --text: #111;
+  --card-bg: #fff;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  direction: rtl;
+}
+
+/* ====== HEADER ====== */
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 18px;
+  background: linear-gradient(90deg, #ffffff, #f3f3f3);
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.site-header .left,
+.site-header .center,
+.site-header .right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* عنوان مركزي */
+.site-header .center h1{
+  margin:0;
+  font-size:20px;
+  letter-spacing:0.5px;
+}
+
+/* زر الوضع (رابط) */
+.mode-link{
+  background: var(--accent);
+  color: #fff;
+  padding:8px 10px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* زر الرجوع في صفحة التفاصيل */
+.back-link{
+  background:#444;
+  color:#fff;
+  padding:8px 10px;
+  border-radius:8px;
+  text-decoration:none;
+}
+
+/* شريط البحث (يمين) */
+.search-form{ display:flex; align-items:center; }
+.search-input{
+  padding:10px 14px;
+  border-radius:25px;
+  border:1px solid #ddd;
+  width:260px;
+  outline:none;
+}
+
+/* ====== شبكة الكروت ====== */
+main{ padding:18px; }
+
+/* مصغّر المسافات حسب طلبك: gap صغير */
+.cars-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap:12px;
+}
+
+/* كل كارت مربع */
+.car-card{
+  position:relative;
+  display:block;
+  width:100%;
+  aspect-ratio: 1 / 1;      /* يضمن مربع */
+  overflow:hidden;
+  border-radius:12px;
+  background: var(--card-bg);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-decoration:none;
+  color: inherit;
+  transform: translateY(0);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;                /* يبدأ مخفي - animation سيجعله يظهر */
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* تكبير عند hover */
+.car-card:hover{
+  transform: scale(1.04);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* الصورة تملأ الكارت */
+.car-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* شريط المعلومات فوق الصورة (اسم + نجوم) */
+.car-info{
+  position:absolute;
+  left:10px;
+  right:10px;
+  bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  padding:6px 8px;
+  background: rgba(0,0,0,0.55);
+  color:#fff;
+  border-radius:8px;
+  font-weight:600;
+  font-size:14px;
+}
+
+/* حالة عدم وجود نتائج */
+.no-results{
+  padding:30px;
+  text-align:center;
+  color:#666;
+}
+
+/* ====== تفاصيل السيارة ====== */
+.detail-main{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:20px;
+  padding:20px;
+}
+
+.detail-images{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+}
+
+.detail-images img{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+/* معلومات نصية */
+.detail-info{
+  background: var(--card-bg);
+  padding:18px;
+  border-radius:10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* ====== انيميشن الظهور (بدون JS) ====== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== الوضع الليلي ====== */
+body.dark{
+  --bg: #0f1113;
+  --text: #e9eef6;
+  --card-bg: #141517;
+  --accent: #1e90ff;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body.dark .site-header{
+  background: linear-gradient(90deg, #0d0d0f, #121214);
+  border-bottom-color: rgba(255,255,255,0.03);
+}
+
+body.dark .search-input{
+  background: #121214;
+  border: 1px solid #2a2a2a;
+  color: var(--text);
+}
+
+body.dark .mode-link,
+body.dark .back-link{
+  background: #2a2a2a;
+  color: var(--text);
+}
+
+/* تحسين للعرض على شاشات صغيرة */
+@media (max-width: 760px) {
+  .detail-main { grid-template-columns: 1fr; }
+  .detail-images img { height: 160px; }
+  .search-input { width: 140px; }
+}
