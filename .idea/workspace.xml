@@ -196,26 +196,15 @@
       <workItem from="1759225005407" duration="24324000" />
       <workItem from="1759251884730" duration="10147000" />
       <workItem from="1759262577480" duration="1830000" />
-      <workItem from="1759264472851" duration="644000" />
+      <workItem from="1759264472851" duration="2029000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/car_showroom/car_showroom.py</url>
-          <line>637</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PythonProject3$car_showroom.coverage" NAME="car_showroom Coverage Results" MODIFIED="1759264901193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/car_showroom" />
+    <SUITE FILE_PATH="coverage/PythonProject3$car_showroom.coverage" NAME="car_showroom Coverage Results" MODIFIED="1759266598757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/car_showroom" />
     <SUITE FILE_PATH="coverage/PythonProject3$app.coverage" NAME="app Coverage Results" MODIFIED="1759241451510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/car_showroom" />
   </component>
 </project>
